@@ -73,7 +73,7 @@ docker-compose up --build
 2. Сервис должен поддерживать аутентификацию с использованием JWT-token
 (Bearer)<br>
 ✅ Поддерживает аутентификацию с использованием JWT-token: http://localhost:8001/docs/api/v1/login
-<br><br>
+<br>
 
 3. Должен быть отдельный endpoint для получения токена по логину/паролю<br>
 ✅ Поддерживает endpoint для получения токена по логину/паролю: http://localhost:8001/docs/api/v1/login
@@ -81,26 +81,26 @@ docker-compose up --build
 4. Сервис должен реализовывать как минимум GET/POST методы <br>
 ✅ Реализовано в <br> http://localhost:8001/docs - приложение user_api_service
 <br>http://localhost:8002/docs - приложение marketplace_api_service
-<br><br>
+<br>
 
 5. Данные сервиса должны храниться в памяти (базу данных добавим потом)<br>
 ✅ Реализовано
-<br><br>
+<br>
 
 6. В целях проверки должен быть заведён мастер-пользователь (имя admin,
 пароль secret)<br>
 ✅ Реализовано
-<br><br>
+<br>
 
 7. Сделайте OpenAPI спецификацию и сохраните ее в корне проекта<br>
 ✅ Реализовано <br>
 │── OpenAPI_marketplace_api_service     # OpenAPI спецификация для marketplace_api_service<br>
 │── OpenAPI_user_api_service            # OpenAPI спецификация для user_api_service
-<br><br>
+<br>
 
 8. Актуализируйте модель архитектуры в Structurizr DSL<br>
 ✅ Реализовано
-<br><br>
+<br>
 9. Ваши сервисы должны запускаться через docker-compose коммандой dockercompose up (создайте Docker файлы для каждого сервиса)<br>
 ✅ Реализовано
-<br><br>
+<br>
