@@ -1,0 +1,393 @@
+
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "FastAPI",
+      "version": "0.1.0"
+    },
+    "paths": {
+      "/api/v1/user/create": {
+        "post": {
+          "tags": [
+            "Регистрация пользователя"
+          ],
+          "summary": "Register Regular User",
+          "operationId": "register_regular_user_api_v1_user_create_post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreate"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/admin/create": {
+        "post": {
+          "tags": [
+            "Регистрация пользователя"
+          ],
+          "summary": "Register Admin User",
+          "operationId": "register_admin_user_api_v1_admin_create_post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreateAdmin"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/login": {
+        "post": {
+          "tags": [
+            "Авторизация пользователя (получение токена)"
+          ],
+          "summary": "Login User",
+          "operationId": "login_user_api_v1_login_post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserLogin"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/user/delete": {
+        "delete": {
+          "tags": [
+            "Пользователь"
+          ],
+          "summary": "Delete User",
+          "operationId": "delete_user_api_v1_user_delete_delete",
+          "parameters": [
+            {
+              "name": "email",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "Email"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/user/update": {
+        "put": {
+          "tags": [
+            "Пользователь"
+          ],
+          "summary": "Update User",
+          "operationId": "update_user_api_v1_user_update_put",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserUpdate"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/user/get_all": {
+        "get": {
+          "tags": [
+            "Пользователь"
+          ],
+          "summary": "Get All Users",
+          "operationId": "get_all_users_api_v1_user_get_all_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "HTTPValidationError": {
+          "properties": {
+            "detail": {
+              "items": {
+                "$ref": "#/components/schemas/ValidationError"
+              },
+              "type": "array",
+              "title": "Detail"
+            }
+          },
+          "type": "object",
+          "title": "HTTPValidationError"
+        },
+        "UserCreate": {
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Name",
+              "example": "Steve Normis"
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "title": "Email",
+              "example": "normis@gmail.com"
+            },
+            "password": {
+              "type": "string",
+              "title": "Password",
+              "example": "secret"
+            }
+          },
+          "type": "object",
+          "required": [
+            "name",
+            "email",
+            "password"
+          ],
+          "title": "UserCreate"
+        },
+        "UserCreateAdmin": {
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Name",
+              "example": "John Admin"
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "title": "Email",
+              "example": "admin@admin.ru"
+            },
+            "password": {
+              "type": "string",
+              "title": "Password",
+              "example": "secret"
+            }
+          },
+          "type": "object",
+          "required": [
+            "name",
+            "email",
+            "password"
+          ],
+          "title": "UserCreateAdmin"
+        },
+        "UserLogin": {
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email",
+              "title": "Email",
+              "example": "admin@admin.ru"
+            },
+            "password": {
+              "type": "string",
+              "title": "Password",
+              "example": "secret"
+            }
+          },
+          "type": "object",
+          "required": [
+            "email",
+            "password"
+          ],
+          "title": "UserLogin"
+        },
+        "UserUpdate": {
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email",
+              "title": "Email",
+              "example": "admin@admin.ru"
+            },
+            "new_name": {
+              "type": "string",
+              "title": "New Name",
+              "example": "John Doe"
+            },
+            "new_email": {
+              "type": "string",
+              "format": "email",
+              "title": "New Email",
+              "example": "base_user@ml.com"
+            },
+            "new_password": {
+              "type": "string",
+              "title": "New Password",
+              "example": "12345"
+            }
+          },
+          "type": "object",
+          "required": [
+            "email"
+          ],
+          "title": "UserUpdate"
+        },
+        "ValidationError": {
+          "properties": {
+            "loc": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "type": "array",
+              "title": "Location"
+            },
+            "msg": {
+              "type": "string",
+              "title": "Message"
+            },
+            "type": {
+              "type": "string",
+              "title": "Error Type"
+            }
+          },
+          "type": "object",
+          "required": [
+            "loc",
+            "msg",
+            "type"
+          ],
+          "title": "ValidationError"
+        }
+      }
+    }
+  }
