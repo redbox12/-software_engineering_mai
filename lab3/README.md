@@ -46,26 +46,26 @@ docker-compose up --build
 реляционной СУБД PostgreSQL 14;
 <br>
 ✅ Выполнено <br>
+
 ```
-archdb=# \d
-            List of relations
- Schema |     Name     |   Type   | Owner
---------+--------------+----------+-------
- public | users        | table    | root
- public | users_id_seq | sequence | root
-(2 rows)
+    archdb=# \d
+                List of relations
+    Schema |     Name     |   Type   | Owner
+    --------+--------------+----------+-------
+    public | users        | table    | root
+    public | users_id_seq | sequence | root
+    (2 rows)
 
-archdb=# select * from users;
- id |     name     |       email       |                        password_hash                         | role
-----+--------------+-------------------+--------------------------------------------------------------+-------
-  2 | Steve Normis | normis@gmail.com  | $2b$12$ehiJwcwllOtLTP37HbqaVOQhT5IjILUSRzxnI8lYfTmWpyaoiXeyW | user
-  1 | John Doe     | base_user@ml.com  | $2b$12$kB.4HtHr.EUT7.gSCVthyelqiJq5Gbw.DlnM0lQSXCtmZVaQyu66e | admin
-  8 | Steve Normis | normis2@gmail.com | $2b$12$1rki57jdiiMwdYk7sviQueQhYHwiWyf1IRJV3P6eCM16a4vrPKB6S | user
-  9 | John Admin   | admin@admin.ru    | $2b$12$UYArW2ZST70eixnvzwGKpORCvJs1G8Nj.YXt00GYkkQxfgt983S/. | admin
- 10 | John Admin   | admin4@admin.ru   | $2b$12$FZ/FQxe9MwIqCZjqRYGmdOG3wcji7eV3bT8wGUEd1NsxVE/R9mes2 | admin
-(5 rows)
+    archdb=# select * from users;
+    id |     name     |       email       |                        password_hash                         | role
+    ----+--------------+-------------------+--------------------------------------------------------------+-------
+    1 | Steve Normis | normis@gmail.com  | $2b$12$ehiJwcwllOtLTP37HbqaVOQhT5IjILUSRzxnI8lYfTmWpyaoiXeyW | user
+    2 | John Doe     | base_user@ml.com  | $2b$12$kB.4HtHr.EUT7.gSCVthyelqiJq5Gbw.DlnM0lQSXCtmZVaQyu66e | admin
+    3 | Steve Normis | normis2@gmail.com | $2b$12$1rki57jdiiMwdYk7sviQueQhYHwiWyf1IRJV3P6eCM16a4vrPKB6S | user
+    4 | John Admin   | admin@admin.ru    | $2b$12$UYArW2ZST70eixnvzwGKpORCvJs1G8Nj.YXt00GYkkQxfgt983S/. | admin
+    (4 rows)
 
-archdb=#
+    archdb=#
 ```
 
 <br>
