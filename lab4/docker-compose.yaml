@@ -1,0 +1,67 @@
+services:
+  db:
+    image: postgres:14
+    container_name: db
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=archdb
+    ports: ["5432:5432"]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d archdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mongo_db:
+    image: mongo:4.0
+    restart: always
+    ports: ["27017:27017"]
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'db.adminCommand({ping:1})' | mongo --quiet"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      db:
+        condition: service_healthy          
+
+  user_api_service:
+    build:
+      context: ./user_api_service
+      dockerfile: Dockerfile
+    ports: ["8001:8001"]
+    volumes:
+      - ./user_api_service:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      db:
+        condition: service_healthy
+      mongo_db:
+        condition: service_healthy          # ждём PostgreSQL и Mongo
+
+  marketplace_api_service:
+    build:
+      context: ./marketplace_api_service
+      dockerfile: Dockerfile
+    ports: ["8002:8002"]
+    volumes:
+      - ./marketplace_api_service:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MONGO_URI=mongodb://mongo_db:27017
+      - MONGO_DB=marketplace
+    depends_on:
+      mongo_db:
+        condition: service_healthy 
+      user_api_service:
+        condition: service_started 
+        
+volumes:
+  mongo_data:
+  postgres_data:
